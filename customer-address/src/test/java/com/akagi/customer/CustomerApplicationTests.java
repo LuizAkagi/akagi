@@ -6,7 +6,6 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,14 +17,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.akagi.customer.domain.Address;
 import com.akagi.customer.domain.Customer;
 import com.akagi.customer.rest.CustomerController;
 import com.akagi.customer.service.ApiException;
 import com.akagi.customer.service.CustomerService;
 
 @SpringBootTest
-class CustomerApplicationTests {
+class CustomerApplicationTests extends BaseTest{
 
 	@InjectMocks
 	private CustomerController controller;
@@ -33,28 +31,13 @@ class CustomerApplicationTests {
 	@Mock
 	private CustomerService service;
 	
-	private Address address;
-	
-	private Customer customer;
-	
 	@BeforeEach
 	void init() {
-		address = new Address();
-		address.setZipCode("12345-123");
-		address.setNumber(10);
-		
-		customer = new Customer();
-		customer.setAge(25);
-		customer.setDocumentId("12345");
-		customer.setName("João");
-		customer.setRegistrationDate(LocalDateTime.now());
-		customer.setAddresses(Collections.singletonList(address));
+		setupCustomer();
 	}
 	
 	@Test
 	void createCustumer() {
-		
-		
 		
 		when(service.createCustomer(any(Customer.class))).thenReturn(customer);
 

@@ -10,9 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
 @Entity
 public class Customer {
 
@@ -25,13 +22,10 @@ public class Customer {
 
 	private String name;
 
-	@NumberFormat
 	private int age;
 
-	@DateTimeFormat
 	private LocalDateTime registrationDate;
 
-	@DateTimeFormat
 	private LocalDateTime lastUpdateDate;
 
 	@ManyToMany(cascade = CascadeType.ALL)
