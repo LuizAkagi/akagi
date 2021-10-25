@@ -13,7 +13,7 @@ import com.akagi.customer.domain.Customer;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 	
-	@Query("SELECT c FROM Customer c left join c.addresses a WHERE a.zipCode = :zipCode")
+	@Query("SELECT c FROM Customer c join c.addresses a WHERE a.zipCode = :zipCode")
 	Optional<List<Customer>> findByZipCode(@Param("zipCode") String zipCode);
 }
 
